@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { TreePine, Sprout, Scissors, MapPin, Flower2 } from "lucide-react"
+// Importamos Apple para el nuevo servicio
+import { TreePine, Sprout, Scissors, MapPin, Flower2, Apple } from "lucide-react"
 
 const services = [
   {
@@ -13,14 +14,19 @@ const services = [
     description: "Optimización de cultivos, manejo integrado de plagas, fertilización y sistemas de riego para maximizar su producción.",
   },
   {
+    icon: Apple, // Nuevo servicio
+    title: "Producción Frutícola",
+    description: "Planificación y manejo técnico de frutales, selección de variedades, control de sanidad y mejora del rendimiento de cosecha.",
+  },
+  {
     icon: Scissors,
     title: "Poda y Mantenimiento",
     description: "Servicios profesionales de poda, tratamiento fitosanitario y mantenimiento preventivo de árboles y espacios verdes.",
   },
   {
     icon: MapPin,
-    title: "Valuación de Tierras",
-    description: "Evaluación técnica y económica de propiedades rurales, tasación de recursos forestales y análisis de potencial productivo.",
+    title: "Análisis de Suelo y Agua",
+    description: "Análisis fisico-quimico y caracterización, diagnóstico y recomendaciones de manejo.",
   },
   {
     icon: Flower2,
@@ -45,7 +51,7 @@ export function Services() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service) => (
-            <Card key={service.title} className="group hover:shadow-lg transition-shadow duration-300 bg-card">
+            <Card key={service.title} className="group hover:shadow-lg transition-shadow duration-300 bg-card border-none">
               <CardHeader>
                 <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <service.icon className="w-7 h-7 text-primary" />

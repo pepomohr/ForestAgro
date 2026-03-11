@@ -33,10 +33,7 @@ export function About() {
             </div>
             <h3 className="font-serif text-2xl font-bold text-card-foreground mb-4">Ingeniera Agrónoma</h3>
             <p className="text-muted-foreground leading-relaxed">
-              Especializada en producción agrícola sostenible y optimización de cultivos, nuestra agrónoma aporta 
-              conocimientos avanzados en manejo de suelos, sistemas de riego y agricultura de precisión. Su enfoque 
-              integral combina técnicas tradicionales con innovaciones tecnológicas para lograr rendimientos 
-              óptimos respetando el medio ambiente.
+              Especializada en producción con un enfoque agroecológico, nuestra agrónoma aporta conocimientos en manejo de cultivos, especies acompañantes y ganadería. Su enfoque integral combina técnica tradicionales con innovación para lograr los mejores resultados manteniendo el respeto por el medio ambiente.
             </p>
           </div>
         </div>

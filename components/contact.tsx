@@ -1,14 +1,15 @@
 "use client"
 
 import React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, MessageCircle, Instagram } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image" // Importamos Image para los logos originales
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -20,7 +21,6 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
     console.log("Form submitted:", formData)
   }
 
@@ -105,7 +105,6 @@ export function Contact() {
 
           {/* Contact Info */}
           <div className="space-y-6">
-            {/* Direct Contact Info */}
             <Card className="bg-card">
               <CardContent className="p-6 lg:p-8 space-y-6">
                 <h3 className="font-serif text-xl font-bold text-card-foreground">Información de Contacto</h3>
@@ -146,26 +145,41 @@ export function Contact() {
             </Card>
 
             {/* Social Media Buttons */}
-            <div className="grid grid-cols-2 gap-4">
-              <a
-                href="https://wa.me/5491123456789"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 p-6 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg transition-colors"
-              >
-                <MessageCircle className="w-8 h-8" />
-                <span className="font-bold text-lg">WhatsApp</span>
-              </a>
-              <a
-                href="https://instagram.com/forestagro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 p-6 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-90 text-white rounded-lg transition-opacity"
-              >
-                <Instagram className="w-8 h-8" />
-                <span className="font-bold text-lg">Instagram</span>
-              </a>
-            </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  {/* WhatsApp */}
+  <a
+    href="https://wa.me/5491123456789"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center justify-center gap-3 p-6 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg transition-colors shadow-sm"
+  >
+    <Image 
+      src="/images/whatsapp.svg" 
+      alt="WhatsApp" 
+      width={32} 
+      height={32} 
+      className="object-contain brightness-0 invert" // <--- Esto lo pone blanco
+    />
+    <span className="font-bold text-lg">WhatsApp</span>
+  </a>
+
+  {/* Instagram */}
+  <a
+    href="https://instagram.com/forestagro_"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center justify-center gap-3 p-6 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-90 text-white rounded-lg transition-opacity shadow-sm"
+  >
+    <Image 
+      src="/images/instagram.svg" 
+      alt="Instagram" 
+      width={32} 
+      height={32} 
+      className="object-contain brightness-0 invert" // <--- Esto lo pone blanco
+    />
+    <span className="font-bold text-lg">Instagram</span>
+  </a>
+</div>
           </div>
         </div>
       </div>
