@@ -52,7 +52,7 @@ export function Contact() {
             className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto"
             style={{ fontFamily: dmSans }}
           >
-            Estamos aquí para ayudarte con tu próximo proyecto
+            Estamos acá para ayudarte con tu próximo proyecto
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export function Contact() {
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Cuéntanos sobre tu proyecto..."
+                    placeholder="Contanos sobre tu proyecto..."
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}

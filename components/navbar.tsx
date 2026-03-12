@@ -38,7 +38,7 @@ export function Navbar() {
               alt="Logo" 
               width={300}
               height={100} 
-              className="h-10 w-auto object-contain dark:brightness-0 dark:invert" 
+              className="h-20 w-auto object-contain dark:brightness-0 dark:invert" 
               priority
             />
             <span 

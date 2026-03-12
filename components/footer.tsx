@@ -27,15 +27,15 @@ export function Footer() {
               <Image 
                 src="/logoforestagro.svg" 
                 alt="Logo Forestagro" 
-                width={32} 
-                height={32} 
+                width={60} 
+                height={60} 
                 className="brightness-0 invert" 
               />
               <span 
                 className="text-xl font-bold"
                 style={{ fontFamily: poppins }}
               >
-                Forestagro
+                FORESTAGRO
               </span>
             </Link>
             <p 
