@@ -29,10 +29,16 @@ export function Footer() {
                 alt="Logo Forestagro" 
                 width={60} 
                 height={60} 
-                className="brightness-0 invert" 
+                /* EXPLICACIÓN: 
+                   - 'dark:invert-0': Si el sistema está en dark mode, no invierte (queda blanco).
+                   - 'invert': Por defecto lo invierte para que contraste con el fondo oscuro del footer.
+                   - 'brightness-0': Lo deja negro sólido.
+                   - 'invert': Al estar sobre bg-foreground (negro), lo pasa a blanco.
+                */
+                className="brightness-0 invert dark:invert-0" 
               />
               <span 
-                className="text-xl font-bold"
+                className="text-xl font-bold uppercase tracking-wider"
                 style={{ fontFamily: poppins }}
               >
                 FORESTAGRO
