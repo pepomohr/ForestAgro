@@ -1,44 +1,32 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { DM_Sans, Playfair_Display } from 'next/font/google'
+import { DM_Sans, Poppins } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ThemeProvider } from "@/components/theme-provider"
 import './globals.css'
 
-const _dmSans = DM_Sans({ subsets: ["latin"] });
-const _playfair = Playfair_Display({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ["latin"], variable: '--font-dm-sans' });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"], variable: '--font-poppins' });
 
-export const metadata: Metadata = {
-  title: 'Forestagro | Soluciones Forestales y Agronómicas',
-  description: 'Ingeniería experta al servicio de la naturaleza y la producción. Consultoría forestal, asesoramiento agronómico, poda y mantenimiento, valuación de tierras y diseño de paisajes.',
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
-}
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
-        {children}
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        {/* ESTO FUERZA LA TRANSICIÓN POR SOBRE TODO LO DEMÁS */}
+        <style>{`
+          * {
+            transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, border-color 0.25s ease-in-out !important;
+          }
+        `}</style>
+      </head>
+      <body className={`${dmSans.variable} ${poppins.variable} font-sans antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

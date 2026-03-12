@@ -40,12 +40,15 @@ const projects = [
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  // Variables de fuente
+  const poppins = "var(--font-poppins), sans-serif"
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => 
         prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
       )
-    }, 4000) // Cambia la foto cada 4 segundos
+    }, 4000)
 
     return () => clearInterval(timer)
   }, [project.images.length])
@@ -70,7 +73,12 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
       {/* Overlay con Título */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="font-serif text-xl font-bold text-white">{project.title}</h3>
+          <h3 
+            className="text-xl font-bold text-white"
+            style={{ fontFamily: poppins }} // Poppins para el título del proyecto
+          >
+            {project.title}
+          </h3>
           {/* Indicadores de bolitas */}
           <div className="flex gap-1 mt-2">
             {project.images.map((_, i) => (
@@ -87,15 +95,30 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 }
 
 export function Portfolio() {
+  // Variables de fuente
+  const poppins = "var(--font-poppins), sans-serif"
+  const dmSans = "var(--font-dm-sans), sans-serif"
+
   return (
     <section id="proyectos" className="py-20 lg:py-28 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-sm font-medium text-primary uppercase tracking-wider">Galería</span>
-          <h2 className="mt-3 font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground text-balance">
+          <span 
+            className="text-sm font-medium text-primary uppercase tracking-wider"
+            style={{ fontFamily: dmSans }}
+          >
+            Galería
+          </span>
+          <h2 
+            className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground text-balance"
+            style={{ fontFamily: poppins }} // Poppins para el título de sección
+          >
             Nuestros Trabajos
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p 
+            className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto"
+            style={{ fontFamily: dmSans }} // DM Sans para la descripción
+          >
             Una muestra de los proyectos que hemos desarrollado para nuestros clientes
           </p>
         </div>

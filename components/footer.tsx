@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 
@@ -10,6 +12,10 @@ const quickLinks = [
 ]
 
 export function Footer() {
+  // Variables de fuente
+  const poppins = "var(--font-poppins), sans-serif"
+  const dmSans = "var(--font-dm-sans), sans-serif"
+
   return (
     <footer className="bg-foreground text-background py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -25,22 +31,36 @@ export function Footer() {
                 height={32} 
                 className="brightness-0 invert" 
               />
-              <span className="font-serif text-xl font-bold">Forestagro</span>
+              <span 
+                className="text-xl font-bold"
+                style={{ fontFamily: poppins }}
+              >
+                Forestagro
+              </span>
             </Link>
-            <p className="text-background/70 text-sm leading-relaxed max-w-xs">
+            <p 
+              className="text-background/70 text-sm leading-relaxed max-w-xs"
+              style={{ fontFamily: dmSans }}
+            >
               Soluciones integrales forestales y agronómicas. Ingeniería experta al servicio de la naturaleza y la producción.
             </p>
           </div>
 
           {/* Enlaces Rápidos */}
           <div>
-            <h4 className="font-serif text-lg font-bold mb-4">Enlaces Rápidos</h4>
+            <h4 
+              className="text-lg font-bold mb-4"
+              style={{ fontFamily: poppins }}
+            >
+              Enlaces Rápidos
+            </h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-background/70 hover:text-background text-sm transition-colors"
+                    style={{ fontFamily: dmSans }}
                   >
                     {link.label}
                   </Link>
@@ -49,9 +69,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Redes Sociales con logos originales */}
+          {/* Redes Sociales */}
           <div>
-            <h4 className="font-serif text-lg font-bold mb-4">Redes Sociales</h4>
+            <h4 
+              className="text-lg font-bold mb-4"
+              style={{ fontFamily: poppins }}
+            >
+              Redes Sociales
+            </h4>
             <div className="flex gap-4">
               
               {/* WhatsApp */}
@@ -88,9 +113,9 @@ export function Footer() {
                 />
               </a>
 
-              {/* Gmail (Usando tu nuevo SVG) */}
+              {/* Gmail */}
               <a
-                href="mailto:contacto@forestagro.com"
+                href="mailto:forestagro.contacto@gmail.com"
                 className="w-10 h-10 rounded-full bg-background/10 hover:bg-[#EA4335] flex items-center justify-center transition-all group"
                 aria-label="Email"
               >
@@ -108,7 +133,10 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-background/20">
-          <p className="text-center text-background/60 text-sm">
+          <p 
+            className="text-center text-background/60 text-sm"
+            style={{ fontFamily: dmSans }}
+          >
             &copy; {new Date().getFullYear()} Forestagro. Todos los derechos reservados.
           </p>
         </div>

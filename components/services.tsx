@@ -1,5 +1,6 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-// Importamos Apple para el nuevo servicio
 import { TreePine, Sprout, Scissors, MapPin, Flower2, Apple } from "lucide-react"
 
 const services = [
@@ -14,7 +15,7 @@ const services = [
     description: "Optimización de cultivos, manejo integrado de plagas, fertilización y sistemas de riego para maximizar su producción.",
   },
   {
-    icon: Apple, // Nuevo servicio
+    icon: Apple,
     title: "Producción Frutícola",
     description: "Planificación y manejo técnico de frutales, selección de variedades, control de sanidad y mejora del rendimiento de cosecha.",
   },
@@ -36,15 +37,30 @@ const services = [
 ]
 
 export function Services() {
+  // Variables de fuente
+  const poppins = "var(--font-poppins), sans-serif"
+  const dmSans = "var(--font-dm-sans), sans-serif"
+
   return (
     <section id="servicios" className="py-20 lg:py-28 bg-muted">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-sm font-medium text-primary uppercase tracking-wider">Lo que hacemos</span>
-          <h2 className="mt-3 font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground text-balance">
+          <span 
+            className="text-sm font-medium text-primary uppercase tracking-wider"
+            style={{ fontFamily: dmSans }}
+          >
+            Lo que hacemos
+          </span>
+          <h2 
+            className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground text-balance"
+            style={{ fontFamily: poppins }}
+          >
             Nuestros Servicios
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p 
+            className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto"
+            style={{ fontFamily: dmSans }}
+          >
             Soluciones profesionales adaptadas a las necesidades de cada proyecto
           </p>
         </div>
@@ -56,10 +72,20 @@ export function Services() {
                 <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <service.icon className="w-7 h-7 text-primary" />
                 </div>
-                <CardTitle className="font-serif text-xl text-card-foreground">{service.title}</CardTitle>
+                <CardTitle 
+                  className="text-xl text-card-foreground"
+                  style={{ fontFamily: poppins }}
+                >
+                  {service.title}
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                <p 
+                  className="text-muted-foreground leading-relaxed"
+                  style={{ fontFamily: dmSans }}
+                >
+                  {service.description}
+                </p>
               </CardContent>
             </Card>
           ))}

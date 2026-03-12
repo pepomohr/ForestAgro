@@ -19,6 +19,10 @@ export function Contact() {
     message: "",
   })
 
+  // Variables de fuente
+  const poppins = "var(--font-poppins), sans-serif"
+  const dmSans = "var(--font-dm-sans), sans-serif"
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
@@ -32,11 +36,22 @@ export function Contact() {
     <section id="contacto" className="py-20 lg:py-28 bg-muted">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-sm font-medium text-primary uppercase tracking-wider">Hablemos</span>
-          <h2 className="mt-3 font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground text-balance">
+          <span 
+            className="text-sm font-medium text-primary uppercase tracking-wider"
+            style={{ fontFamily: dmSans }}
+          >
+            Hablemos
+          </span>
+          <h2 
+            className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground text-balance"
+            style={{ fontFamily: poppins }}
+          >
             Contacto
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p 
+            className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto"
+            style={{ fontFamily: dmSans }}
+          >
             Estamos aquí para ayudarte con tu próximo proyecto
           </p>
         </div>
@@ -47,7 +62,7 @@ export function Contact() {
             <CardContent className="p-6 lg:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-card-foreground">Nombre</Label>
+                  <Label htmlFor="name" className="text-card-foreground" style={{ fontFamily: dmSans }}>Nombre</Label>
                   <Input
                     id="name"
                     name="name"
@@ -56,10 +71,11 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     className="bg-input"
+                    style={{ fontFamily: dmSans }}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-card-foreground">Email</Label>
+                  <Label htmlFor="email" className="text-card-foreground" style={{ fontFamily: dmSans }}>Email</Label>
                   <Input
                     id="email"
                     name="email"
@@ -69,10 +85,11 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     className="bg-input"
+                    style={{ fontFamily: dmSans }}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-card-foreground">Asunto</Label>
+                  <Label htmlFor="subject" className="text-card-foreground" style={{ fontFamily: dmSans }}>Asunto</Label>
                   <Input
                     id="subject"
                     name="subject"
@@ -81,10 +98,11 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     className="bg-input"
+                    style={{ fontFamily: dmSans }}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-card-foreground">Mensaje</Label>
+                  <Label htmlFor="message" className="text-card-foreground" style={{ fontFamily: dmSans }}>Mensaje</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -94,9 +112,15 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     className="bg-input resize-none"
+                    style={{ fontFamily: dmSans }}
                   />
                 </div>
-                <Button type="submit" size="lg" className="w-full">
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full text-base font-semibold"
+                  style={{ fontFamily: poppins }}
+                >
                   Enviar Mensaje
                 </Button>
               </form>
@@ -107,52 +131,64 @@ export function Contact() {
           <div className="space-y-6">
             <Card className="bg-card">
               <CardContent className="p-6 lg:p-8 space-y-6">
-                <h3 className="font-serif text-xl font-bold text-card-foreground">Información de Contacto</h3>
-                <div className="space-y-6"> {/* Aumenté el espacio entre grupos */}
-                  
+                <h3 
+                  className="text-xl font-bold text-card-foreground"
+                  style={{ fontFamily: poppins }}
+                >
+                  Información de Contacto
+                </h3>
+                <div className="space-y-6">
                   {/* Email */}
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-medium text-card-foreground">Email</p>
-                      <a href="mailto:forestagro.contacto@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Email</p>
+                      <a 
+                        href="mailto:forestagro.contacto@gmail.com" 
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                        style={{ fontFamily: dmSans }}
+                      >
                         forestagro.contacto@gmail.com
                       </a>
                     </div>
                   </div>
 
-                  {/* Teléfonos Separados */}
-<div className="space-y-6"> {/* Contenedor para ambos bloques de teléfono */}
-  
-  {/* Bloque Ingeniero Forestal */}
-  <div className="flex items-start gap-4">
-    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-      <Phone className="w-5 h-5 text-primary" />
-    </div>
-    <div>
-      <p className="font-medium text-card-foreground">Ingeniero Forestal</p>
-      <a href="tel:+5492216234600" className="text-muted-foreground hover:text-primary transition-colors">
-        +54 9 2216 23-4600
-      </a>
-    </div>
-  </div>
+                  {/* Teléfonos */}
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Phone className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Ingeniero Forestal</p>
+                        <a 
+                          href="tel:+5492216234600" 
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          style={{ fontFamily: dmSans }}
+                        >
+                          +54 9 2216 23-4600
+                        </a>
+                      </div>
+                    </div>
 
-  {/* Bloque Ingeniera Agrónoma */}
-  <div className="flex items-start gap-4">
-    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-      <Phone className="w-5 h-5 text-primary" />
-    </div>
-    <div>
-      <p className="font-medium text-card-foreground">Ingeniera Agrónoma</p>
-      <a href="tel:+5492223676180" className="text-muted-foreground hover:text-primary transition-colors">
-        +54 9 2223 67-6180
-      </a>
-    </div>
-  </div>
-
-</div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Phone className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Ingeniera Agrónoma</p>
+                        <a 
+                          href="tel:+5492223676180" 
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          style={{ fontFamily: dmSans }}
+                        >
+                          +54 9 2223 67-6180
+                        </a>
+                      </div>
+                    </div>
+                  </div>
 
                   {/* Ubicación */}
                   <div className="flex items-start gap-4">
@@ -160,15 +196,15 @@ export function Contact() {
                       <MapPin className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-medium text-card-foreground">Ubicación</p>
-                      <p className="text-muted-foreground">Buenos Aires, Argentina</p>
+                      <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Ubicación</p>
+                      <p className="text-muted-foreground" style={{ fontFamily: dmSans }}>Buenos Aires, Argentina</p>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Botones de Redes Sociales */}
+            {/* Redes Sociales */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a
                 href="https://wa.me/5491123456789"
@@ -183,7 +219,7 @@ export function Contact() {
                   height={32} 
                   className="object-contain brightness-0 invert"
                 />
-                <span className="font-bold text-lg">WhatsApp</span>
+                <span className="font-bold text-lg" style={{ fontFamily: poppins }}>WhatsApp</span>
               </a>
 
               <a
@@ -199,7 +235,7 @@ export function Contact() {
                   height={32} 
                   className="object-contain brightness-0 invert"
                 />
-                <span className="font-bold text-lg">Instagram</span>
+                <span className="font-bold text-lg" style={{ fontFamily: poppins }}>Instagram</span>
               </a>
             </div>
           </div>

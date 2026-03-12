@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import Image from "next/image" // Importamos el componente optimizado
+import Image from "next/image"
 
 export function Hero() {
   return (
@@ -8,27 +8,36 @@ export function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/fondo-hero.webp" // Tu nueva imagen
+          src="/fondo-hero.webp"
           alt="Paisaje forestal y agrícola"
-          fill // Para que ocupe todo el fondo
-          className="object-cover" // Para que no se deforme
-          priority // Para que cargue al toque apenas entran a la web
+          fill
+          className="object-cover"
+          priority
           quality={90}
         />
-        {/* Capa oscura para que el texto resalte bien */}
         <div className="absolute inset-0 bg-black/50 z-10" />
       </div>
 
       {/* Content */}
       <div className="relative z-20 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-balance">
+        {/* Forzamos Poppins con la variable CSS directamente */}
+        <h1 
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-balance"
+          style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
+        >
           Soluciones Integrales Forestales y Agronómicas
         </h1>
-        <p className="mt-6 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto text-pretty">
+        
+        {/* Forzamos DM Sans con la variable CSS */}
+        <p 
+          className="mt-6 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto text-pretty"
+          style={{ fontFamily: 'var(--font-dm-sans), sans-serif' }}
+        >
           Ingeniería experta al servicio de la naturaleza y la producción
         </p>
+
         <div className="mt-10">
-          <Button asChild size="lg" className="text-base px-8 py-6">
+          <Button asChild size="lg" className="text-base px-8 py-6" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
             <Link href="#contacto">Contactar Ahora</Link>
           </Button>
         </div>
