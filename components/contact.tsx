@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Mail, Phone, MapPin } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image" // Importamos Image para los logos originales
+import Image from "next/image"
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -42,7 +42,7 @@ export function Contact() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Contact Form */}
+          {/* Formulario de contacto */}
           <Card className="bg-card">
             <CardContent className="p-6 lg:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -103,34 +103,58 @@ export function Contact() {
             </CardContent>
           </Card>
 
-          {/* Contact Info */}
+          {/* Información de Contacto */}
           <div className="space-y-6">
             <Card className="bg-card">
               <CardContent className="p-6 lg:p-8 space-y-6">
                 <h3 className="font-serif text-xl font-bold text-card-foreground">Información de Contacto</h3>
-                <div className="space-y-4">
+                <div className="space-y-6"> {/* Aumenté el espacio entre grupos */}
+                  
+                  {/* Email */}
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div>
                       <p className="font-medium text-card-foreground">Email</p>
-                      <a href="mailto:contacto@forestagro.com" className="text-muted-foreground hover:text-primary transition-colors">
-                        contacto@forestagro.com
+                      <a href="mailto:forestagro.contacto@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                        forestagro.contacto@gmail.com
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-card-foreground">Teléfono</p>
-                      <a href="tel:+5491123456789" className="text-muted-foreground hover:text-primary transition-colors">
-                        +54 9 11 2345-6789
-                      </a>
-                    </div>
-                  </div>
+
+                  {/* Teléfonos Separados */}
+<div className="space-y-6"> {/* Contenedor para ambos bloques de teléfono */}
+  
+  {/* Bloque Ingeniero Forestal */}
+  <div className="flex items-start gap-4">
+    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+      <Phone className="w-5 h-5 text-primary" />
+    </div>
+    <div>
+      <p className="font-medium text-card-foreground">Ingeniero Forestal</p>
+      <a href="tel:+5492216234600" className="text-muted-foreground hover:text-primary transition-colors">
+        +54 9 2216 23-4600
+      </a>
+    </div>
+  </div>
+
+  {/* Bloque Ingeniera Agrónoma */}
+  <div className="flex items-start gap-4">
+    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+      <Phone className="w-5 h-5 text-primary" />
+    </div>
+    <div>
+      <p className="font-medium text-card-foreground">Ingeniera Agrónoma</p>
+      <a href="tel:+5492223676180" className="text-muted-foreground hover:text-primary transition-colors">
+        +54 9 2223 67-6180
+      </a>
+    </div>
+  </div>
+
+</div>
+
+                  {/* Ubicación */}
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                       <MapPin className="w-5 h-5 text-primary" />
@@ -144,42 +168,40 @@ export function Contact() {
               </CardContent>
             </Card>
 
-            {/* Social Media Buttons */}
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-  {/* WhatsApp */}
-  <a
-    href="https://wa.me/5491123456789"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center justify-center gap-3 p-6 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg transition-colors shadow-sm"
-  >
-    <Image 
-      src="/images/whatsapp.svg" 
-      alt="WhatsApp" 
-      width={32} 
-      height={32} 
-      className="object-contain brightness-0 invert" // <--- Esto lo pone blanco
-    />
-    <span className="font-bold text-lg">WhatsApp</span>
-  </a>
+            {/* Botones de Redes Sociales */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a
+                href="https://wa.me/5491123456789"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 p-6 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg transition-colors shadow-sm"
+              >
+                <Image 
+                  src="/images/whatsapp.svg" 
+                  alt="WhatsApp" 
+                  width={32} 
+                  height={32} 
+                  className="object-contain brightness-0 invert"
+                />
+                <span className="font-bold text-lg">WhatsApp</span>
+              </a>
 
-  {/* Instagram */}
-  <a
-    href="https://instagram.com/forestagro_"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center justify-center gap-3 p-6 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-90 text-white rounded-lg transition-opacity shadow-sm"
-  >
-    <Image 
-      src="/images/instagram.svg" 
-      alt="Instagram" 
-      width={32} 
-      height={32} 
-      className="object-contain brightness-0 invert" // <--- Esto lo pone blanco
-    />
-    <span className="font-bold text-lg">Instagram</span>
-  </a>
-</div>
+              <a
+                href="https://instagram.com/forestagro_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 p-6 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-90 text-white rounded-lg transition-opacity shadow-sm"
+              >
+                <Image 
+                  src="/images/instagram.svg" 
+                  alt="Instagram" 
+                  width={32} 
+                  height={32} 
+                  className="object-contain brightness-0 invert"
+                />
+                <span className="font-bold text-lg">Instagram</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

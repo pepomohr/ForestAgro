@@ -1,35 +1,90 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Image from "next/image"
+
 const projects = [
   {
-    src: "/images/project-1.jpg",
-    alt: "Consultoría forestal en bosque nativo",
     title: "Gestión Forestal",
+    images: ["/images/forestal-1.webp", "/images/forestal-2.webp", "/images/forestal-3.webp"],
+    alt: "Consultoría forestal en bosque nativo",
   },
   {
-    src: "/images/project-2.jpg",
+    title: "Producción Agropecuaria",
+    images: ["/images/agropecuaria-1.webp", "/images/agropecuaria-2.webp", "/images/agropecuaria-3.webp", "/images/agropecuaria-4.webp" ],
     alt: "Asesoramiento en campos de cultivo",
-    title: "Producción Agrícola",
   },
   {
-    src: "/images/project-3.jpg",
-    alt: "Trabajo de poda profesional",
     title: "Poda Técnica",
+    images: ["/images/poda-1.webp", "/images/poda-2.webp"],
+    alt: "Trabajo de poda profesional",
   },
   {
-    src: "/images/project-4.jpg",
-    alt: "Diseño de jardín sostenible",
     title: "Paisajismo",
+    images: ["/images/paisajismo-1.webp", "/images/paisajismo-2.webp"],
+    alt: "Diseño de jardín sostenible",
   },
   {
-    src: "/images/project-5.jpg",
-    alt: "Valuación de propiedad rural",
-    title: "Valuación de Tierras",
+    title: "Análisis de Suelo y Agua",
+    images: ["/images/analisis-1.webp", "/images/analisis-2.webp"],
+    alt: "Análisis de propiedades del suelo y agua",
   },
   {
-    src: "/images/project-6.jpg",
-    alt: "Relevamientos Floristicos e Inventarios",
-    title: "Relevamientos Floristicos e Inventarios",
+    title: "Sistemas Fruticolas",
+    images: ["/images/sistemas-1.webp", "/images/sistemas-2.webp"],
+    alt: "Sistemas de cultivo frutícola",
   },
 ]
+
+// Componente para la tarjeta individual con carrusel
+function ProjectCard({ project }: { project: typeof projects[0] }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
+      )
+    }, 4000) // Cambia la foto cada 4 segundos
+
+    return () => clearInterval(timer)
+  }, [project.images.length])
+
+  return (
+    <div className="group relative overflow-hidden rounded-lg shadow-md bg-card">
+      <div className="aspect-[4/3] relative overflow-hidden">
+        {project.images.map((src, index) => (
+          <Image
+            key={src}
+            src={src}
+            alt={project.alt}
+            fill
+            className={`object-cover transition-opacity duration-1000 ease-in-out ${
+              index === currentIndex ? "opacity-100 scale-105" : "opacity-0"
+            }`}
+            priority={index === 0}
+          />
+        ))}
+      </div>
+      
+      {/* Overlay con Título */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <h3 className="font-serif text-xl font-bold text-white">{project.title}</h3>
+          {/* Indicadores de bolitas */}
+          <div className="flex gap-1 mt-2">
+            {project.images.map((_, i) => (
+              <div 
+                key={i} 
+                className={`h-1 rounded-full transition-all ${i === currentIndex ? "w-4 bg-primary" : "w-1 bg-white/50"}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export function Portfolio() {
   return (
@@ -45,27 +100,9 @@ export function Portfolio() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`group relative overflow-hidden rounded-lg ${
-                index === 0 || index === 5 ? "sm:col-span-2 lg:col-span-1" : ""
-              }`}
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={project.src || "/placeholder.svg"}
-                  alt={project.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="font-serif text-xl font-bold text-white">{project.title}</h3>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>
