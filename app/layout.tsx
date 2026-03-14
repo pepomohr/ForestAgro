@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   // Esto es para que en redes sociales y WhatsApp se vea pro
   openGraph: {
     title: "Forestagro | Ingeniería Forestal y Agronómica",
-    description: "Soluciones profesionales para el sector agroforestal lideradas por el Ing. David Mohr.",
+    description: "Soluciones profesionales para el sector agroforestal lideradas por el Ing. Mariano H. Clausi y la Ing. Sabrina Alcat.",
     url: "https://www.forestagro.com.ar", // Poné acá la URL definitiva cuando la tengas
     siteName: "Forestagro",
     images: [
