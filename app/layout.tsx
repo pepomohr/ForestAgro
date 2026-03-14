@@ -10,21 +10,21 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"], var
 
 export const metadata: Metadata = {
   title: "Forestagro | Ingeniería Forestal y Agronómica",
-  description: "Consultoría profesional en General Belgrano. Especialistas en gestión de bosques, producción frutícola y soluciones agroecológicas sostenibles.",
-  keywords: ["Ingeniería Forestal", "Agronomía", "General Belgrano", "Gestión de Bosques", "Forestagro", "David Mohr"],
-  authors: [{ name: "David Mohr" }],
+  description: "Consultoría profesional en General Belgrano liderada por el Ing. Mariano H. Clausi y la Ing. Sabrina Alcat. Gestión de bosques y agroecología.",
+  keywords: ["Ingeniería Forestal", "Agronomía", "General Belgrano", "Mariano Clausi", "Sabrina Alcat", "Forestagro"],
+  authors: [{ name: "Mariano H. Clausi" }, { name: "Sabrina Alcat" }],
   icons: {
-    icon: "/images/favicon.png", // Chequeá que la ruta sea exacta dentro de /public
+    icon: "/images/favicon.png",
+    apple: "/images/favicon.png", // Esto es para que el acceso directo en iPhone tenga el logo
   },
-  // Esto es para que en redes sociales y WhatsApp se vea pro
   openGraph: {
     title: "Forestagro | Ingeniería Forestal y Agronómica",
     description: "Soluciones profesionales para el sector agroforestal lideradas por el Ing. Mariano H. Clausi y la Ing. Sabrina Alcat.",
-    url: "https://www.forestagro.com.ar", // Poné acá la URL definitiva cuando la tengas
+    url: "https://www.forestagro.com.ar",
     siteName: "Forestagro",
     images: [
       {
-        url: "/og-image.png", // Te recomiendo crear una imagen de 1200x630px y ponerla en /public
+        url: "/images/og-image.png", 
         width: 1200,
         height: 630,
         alt: "Logo Forestagro",
@@ -48,8 +48,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${dmSans.variable} ${poppins.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
+          defaultTheme="system" // Ahora sí va a respetar el modo de tu PC
+          enableSystem={true}
         >
           {children}
         </ThemeProvider>
