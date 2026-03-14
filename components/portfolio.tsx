@@ -6,7 +6,7 @@ import Image from "next/image"
 const projects = [
   {
     title: "Gestión Forestal",
-    images: ["/images/forestal-1.webp", "/images/forestal-2.webp", "/images/forestal-3.webp"],
+    images: ["/images/forestal-1.webp", "/images/forestal-2.webp", "/images/forestal-3.webp", "/images/forestal-4.webp"],
     alt: "Consultoría forestal en bosque nativo",
   },
   {
@@ -16,22 +16,22 @@ const projects = [
   },
   {
     title: "Poda Técnica",
-    images: ["/images/poda-1.webp", "/images/poda-2.webp"],
+    images: ["/images/poda-1.webp", "/images/poda-2.webp", "/images/poda-3.webp", "/images/poda-4.webp"],
     alt: "Trabajo de poda profesional",
   },
   {
     title: "Paisajismo",
-    images: ["/images/paisajismo-1.webp", "/images/paisajismo-2.webp"],
+    images: ["/images/paisajismo-1.webp", "/images/paisajismo-2.webp", "/images/paisajismo-3.webp", "/images/paisajismo-4.webp"],
     alt: "Diseño de jardín sostenible",
   },
   {
     title: "Análisis de Suelo y Agua",
-    images: ["/images/analisis-1.webp", "/images/analisis-2.webp"],
+    images: ["/images/analisis-1.webp", "/images/analisis-2.webp", "/images/analisis-3.webp", "/images/analisis-4.webp"],
     alt: "Análisis de propiedades del suelo y agua",
   },
   {
     title: "Sistemas Fruticolas",
-    images: ["/images/sistemas-1.webp", "/images/sistemas-2.webp"],
+    images: ["/images/sistemas-1.webp", "/images/sistemas-2.webp", "/images/sistemas-3.webp", "/images/sistemas-4.webp"],
     alt: "Sistemas de cultivo frutícola",
   },
 ]

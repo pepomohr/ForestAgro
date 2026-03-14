@@ -26,13 +26,11 @@ export function About() {
   const [progress, setProgress] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
-  // Definimos las variables de fuente para usarlas fácil en el style
   const poppins = "var(--font-poppins), sans-serif"
   const dmSans = "var(--font-dm-sans), sans-serif"
 
   useEffect(() => {
     if (isTransitioning) return;
-
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -42,53 +40,49 @@ export function About() {
         return prev + 0.4
       })
     }, 40)
-
     return () => clearInterval(timer)
   }, [activeCard, isTransitioning])
 
   useEffect(() => {
     if (progress >= 100) {
+      // 1. Empezamos el desvanecimiento (Fade Out)
+      setIsTransitioning(true)
+      
       const timeout = setTimeout(() => {
-        setIsTransitioning(true)
+        // 2. Cambiamos el contenido mientras el texto es invisible
+        setActiveCard((prev) => (prev === team.length - 1 ? 0 : prev + 1))
+        setProgress(0)
         
+        // 3. Volvemos a mostrar (Fade In) después de un breve delay
         setTimeout(() => {
-          setActiveCard((prev) => (prev === team.length - 1 ? 0 : prev + 1))
-          setProgress(0)
           setIsTransitioning(false)
-        }, 800)
-
-      }, 4000)
+        }, 50) 
+      }, 800) // Duración de la salida
       
       return () => clearTimeout(timeout)
     }
   }, [progress])
 
   return (
-    <section id="nosotros" className="py-20 lg:py-28 bg-background overflow-hidden">
+    <section id="nosotros" className="py-8 lg:py-16 bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-16">
-          <span 
-            className="text-sm font-medium text-primary uppercase tracking-wider"
-            style={{ fontFamily: dmSans }} // DM Sans para el label
-          >
+        <div className="text-center mb-6 lg:mb-10">
+          <span className="text-xs font-medium text-primary uppercase tracking-wider" style={{ fontFamily: dmSans }}>
             Sobre Nosotros
           </span>
-          <h2 
-            className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground"
-            style={{ fontFamily: poppins }} // Poppins para el H2
-          >
+          <h2 className="mt-1 text-2xl lg:text-4xl font-bold text-foreground" style={{ fontFamily: poppins }}>
             Quiénes Somos
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           
-          <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl bg-muted">
+          <div className="relative h-64 sm:h-80 lg:h-[500px] w-full max-w-[500px] mx-auto rounded-2xl overflow-hidden shadow-xl bg-muted">
             {team.map((member, index) => (
               <div 
                 key={index} 
-                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                   index === activeCard ? "opacity-100 scale-100" : "opacity-0 scale-105"
                 }`}
               >
@@ -96,55 +90,34 @@ export function About() {
                   src={member.image}
                   alt={member.role}
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
                   priority
                 />
               </div>
             ))}
-            <div className="absolute inset-0 bg-primary/5 mix-blend-multiply" />
           </div>
 
-          <div className="flex flex-col justify-center min-h-[350px]">
-            <div className={`transition-all duration-700 ${isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}>
-              <h3 
-                className="text-3xl lg:text-4xl font-bold text-primary mb-6"
-                style={{ fontFamily: poppins }} // Poppins para el nombre/rol
-              >
+          <div className="flex flex-col justify-center">
+            {/* EFECTO FADE IN / OUT: Suave y con ligero movimiento vertical */}
+            <div className={`transition-all duration-1000 ease-in-out ${
+              isTransitioning 
+                ? "opacity-0 translate-y-2 blur-sm" 
+                : "opacity-100 translate-y-0 blur-0"
+            }`}>
+              <h3 className="text-xl lg:text-3xl font-bold text-primary mb-2 lg:mb-4" style={{ fontFamily: poppins }}>
                 {team[activeCard].role}
               </h3>
               
-              <div className="relative">
-                <p 
-                  className="text-xl lg:text-2xl leading-relaxed"
-                  style={{
-                    fontFamily: dmSans, // DM Sans para el cuerpo
-                    color: 'rgba(0, 0, 0, 0.15)', 
-                    backgroundImage: `linear-gradient(to right, #166534 ${progress}%, transparent ${progress}%)`,
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundRepeat: 'no-repeat',
-                    display: 'inline'
-                  }}
-                >
-                  {team[activeCard].description}
-                </p>
-              </div>
+              <p className="text-base lg:text-lg leading-relaxed text-foreground/80" style={{ fontFamily: dmSans }}>
+                {team[activeCard].description}
+              </p>
             </div>
 
-            <div className="flex gap-3 mt-10">
+            <div className="flex gap-2 mt-6">
               {team.map((_, i) => (
-                <div 
-                  key={i} 
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    i === activeCard ? "w-16 bg-primary" : "w-6 bg-muted/30"
-                  }`} 
-                >
+                <div key={i} className={`h-1 rounded-full transition-all duration-500 ${i === activeCard ? "w-10 bg-primary/20" : "w-4 bg-muted/30"}`}>
                   {i === activeCard && (
-                    <div 
-                      className="h-full bg-primary rounded-full" 
-                      style={{ width: `${progress}%`, transition: 'width 40ms linear' }}
-                    />
+                    <div className="h-full bg-primary rounded-full" style={{ width: `${progress}%` }} />
                   )}
                 </div>
               ))}

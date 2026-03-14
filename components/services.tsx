@@ -1,13 +1,14 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { TreePine, Sprout, Scissors, MapPin, Flower2, Apple } from "lucide-react"
+// Importamos la nueva selección de íconos facha
+import { Trees, Sprout, Apple, Scissors, TestTube2, Compass } from "lucide-react"
 
 const services = [
   {
-    icon: TreePine,
+    icon: Trees,
     title: "Consultoría Forestal",
-    description: "Asesoramiento experto en gestión de bosques, inventarios forestales, planes de manejo y certificaciones ambientales.",
+    description: "Asesoramiento experto en gestión de bosques, inventarios forestales y planes de manejo.",
   },
   {
     icon: Sprout,
@@ -25,19 +26,18 @@ const services = [
     description: "Servicios profesionales de poda, tratamiento fitosanitario y mantenimiento preventivo de árboles y espacios verdes.",
   },
   {
-    icon: MapPin,
+    icon: TestTube2,
     title: "Análisis de Suelo y Agua",
     description: "Análisis fisico-quimico y caracterización, diagnóstico y recomendaciones de manejo.",
   },
   {
-    icon: Flower2,
+    icon: Compass,
     title: "Diseño de Paisajes",
     description: "Creación de espacios verdes funcionales y estéticos, selección de especies nativas y planificación de jardines sostenibles.",
   },
 ]
 
 export function Services() {
-  // Variables de fuente
   const poppins = "var(--font-poppins), sans-serif"
   const dmSans = "var(--font-dm-sans), sans-serif"
 
@@ -67,13 +67,17 @@ export function Services() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service) => (
-            <Card key={service.title} className="group hover:shadow-lg transition-shadow duration-300 bg-card border-none">
+            <Card key={service.title} className="group hover:shadow-xl transition-all duration-300 bg-card border-none overflow-hidden">
               <CardHeader>
-                <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="w-7 h-7 text-primary" />
+                {/* Contenedor del icono con animación en hover */}
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-all duration-500">
+                  <service.icon 
+                    className="w-7 h-7 text-primary group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500" 
+                    strokeWidth={1.5}
+                  />
                 </div>
                 <CardTitle 
-                  className="text-xl text-card-foreground"
+                  className="text-xl text-card-foreground group-hover:text-primary transition-colors duration-300"
                   style={{ fontFamily: poppins }}
                 >
                   {service.title}

@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Mail, Phone, MapPin } from "lucide-react"
-import Link from "next/link"
 import Image from "next/image"
 
 export function Contact() {
@@ -19,7 +18,6 @@ export function Contact() {
     message: "",
   })
 
-  // Variables de fuente
   const poppins = "var(--font-poppins), sans-serif"
   const dmSans = "var(--font-dm-sans), sans-serif"
 
@@ -58,11 +56,11 @@ export function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Formulario de contacto */}
-          <Card className="bg-card">
+          <Card className="bg-card shadow-sm">
             <CardContent className="p-6 lg:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-card-foreground" style={{ fontFamily: dmSans }}>Nombre</Label>
+                  <Label htmlFor="name" style={{ fontFamily: dmSans }}>Nombre</Label>
                   <Input
                     id="name"
                     name="name"
@@ -75,7 +73,7 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-card-foreground" style={{ fontFamily: dmSans }}>Email</Label>
+                  <Label htmlFor="email" style={{ fontFamily: dmSans }}>Email</Label>
                   <Input
                     id="email"
                     name="email"
@@ -89,7 +87,7 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-card-foreground" style={{ fontFamily: dmSans }}>Asunto</Label>
+                  <Label htmlFor="subject" style={{ fontFamily: dmSans }}>Asunto</Label>
                   <Input
                     id="subject"
                     name="subject"
@@ -102,7 +100,7 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-card-foreground" style={{ fontFamily: dmSans }}>Mensaje</Label>
+                  <Label htmlFor="message" style={{ fontFamily: dmSans }}>Mensaje</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -128,117 +126,143 @@ export function Contact() {
           </Card>
 
           {/* Información de Contacto */}
-          <div className="space-y-6">
-            <Card className="bg-card">
-              <CardContent className="p-6 lg:p-8 space-y-6">
-                <h3 
-                  className="text-xl font-bold text-card-foreground"
-                  style={{ fontFamily: poppins }}
-                >
-                  Información de Contacto
-                </h3>
-                <div className="space-y-6">
-                  {/* Email */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Email</p>
-                      <a 
-                        href="mailto:forestagro.contacto@gmail.com" 
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                        style={{ fontFamily: dmSans }}
-                      >
-                        forestagro.contacto@gmail.com
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Teléfonos */}
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Phone className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Ingeniero Forestal</p>
-                        <a 
-                          href="tel:+5492216234600" 
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                          style={{ fontFamily: dmSans }}
-                        >
-                          +54 9 2216 23-4600
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Phone className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Ingeniera Agrónoma</p>
-                        <a 
-                          href="tel:+5492223676180" 
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                          style={{ fontFamily: dmSans }}
-                        >
-                          +54 9 2223 67-6180
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Ubicación */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-card-foreground" style={{ fontFamily: dmSans }}>Ubicación</p>
-                      <p className="text-muted-foreground" style={{ fontFamily: dmSans }}>Buenos Aires, Argentina</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Redes Sociales */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a
-                href="https://wa.me/5491123456789"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 p-6 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg transition-colors shadow-sm"
+<div className="space-y-6">
+  <Card className="bg-card shadow-sm h-full">
+    <CardContent className="p-6 lg:p-8 space-y-8">
+      <h3 
+        className="text-2xl font-bold text-card-foreground"
+        style={{ fontFamily: poppins }}
+      >
+        Información de Contacto
+      </h3>
+      
+      <div className="space-y-8">
+        {/* Email */}
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+            <Mail className="w-6 h-6 text-primary" />
+          </div>
+          <div className="space-y-1">
+            <p className="font-bold text-card-foreground" style={{ fontFamily: dmSans }}>Email</p>
+            <div className="flex items-center gap-4">
+              <a 
+                href="mailto:forestagro.contacto@gmail.com" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                style={{ fontFamily: dmSans }}
               >
-                <Image 
-                  src="/images/whatsapp.svg" 
-                  alt="WhatsApp" 
-                  width={32} 
-                  height={32} 
-                  className="object-contain brightness-0 invert"
-                />
-                <span className="font-bold text-lg" style={{ fontFamily: poppins }}>WhatsApp</span>
+                forestagro.contacto@gmail.com
               </a>
-
-              <a
-                href="https://instagram.com/forestagro_"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 p-6 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-90 text-white rounded-lg transition-opacity shadow-sm"
+              {/* Botón Circular Estilo Footer - Gmail */}
+              <a 
+                href="mailto:forestagro.contacto@gmail.com"
+                className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center transition-all duration-300 hover:bg-[#EA4335] group shadow-sm"
               >
                 <Image 
-                  src="/images/instagram.svg" 
-                  alt="Instagram" 
-                  width={32} 
-                  height={32} 
-                  className="object-contain brightness-0 invert"
+                  src="/images/gmail.svg" 
+                  alt="Gmail" 
+                  width={20} 
+                  height={20} 
+                  className="transition-all duration-300 group-hover:brightness-0 group-hover:invert group-hover:scale-110" 
                 />
-                <span className="font-bold text-lg" style={{ fontFamily: poppins }}>Instagram</span>
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Ingeniero Forestal */}
+<div className="flex items-start gap-4 pt-2">
+  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+    <Phone className="w-6 h-6 text-primary" />
+  </div>
+  <div className="space-y-1">
+    <p className="font-bold text-card-foreground" style={{ fontFamily: dmSans }}>Ingeniero Forestal</p>
+    <div className="flex items-center gap-4">
+      <a href="tel:+5492216234600" className="text-muted-foreground hover:text-foreground transition-colors" style={{ fontFamily: dmSans }}>
+        +54 9 2216 23-4600
+      </a>
+      {/* Botón Circular WhatsApp */}
+      <a 
+        href="https://wa.me/5492216234600" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center transition-all duration-300 hover:bg-[#25D366] group shadow-sm"
+        // PASAMOS LA LÓGICA AL PADRE
+        onMouseEnter={(e) => {
+          const img = e.currentTarget.querySelector('img');
+          if (img) img.style.filter = 'brightness(0) invert(1)';
+        }}
+        onMouseLeave={(e) => {
+          const img = e.currentTarget.querySelector('img');
+          if (img) img.style.filter = 'none';
+        }}
+      >
+        <Image 
+          src="/images/whatsapp.svg" 
+          alt="WhatsApp" 
+          width={20} 
+          height={20} 
+          className="transition-all duration-300 group-hover:scale-110" 
+          style={{ filter: 'none' }}
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+{/* Ingeniera Agrónoma */}
+<div className="flex items-start gap-4 pt-2">
+  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+    <Phone className="w-6 h-6 text-primary" />
+  </div>
+  <div className="space-y-1">
+    <p className="font-bold text-card-foreground" style={{ fontFamily: dmSans }}>Ingeniera Agrónoma</p>
+    <div className="flex items-center gap-4">
+      <a href="tel:+5492223676180" className="text-muted-foreground hover:text-foreground transition-colors" style={{ fontFamily: dmSans }}>
+        +54 9 2223 67-6180
+      </a>
+      {/* Botón Circular WhatsApp */}
+      <a 
+        href="https://wa.me/5492223676180" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center transition-all duration-300 hover:bg-[#25D366] group shadow-sm"
+        // PASAMOS LA LÓGICA AL PADRE
+        onMouseEnter={(e) => {
+          const img = e.currentTarget.querySelector('img');
+          if (img) img.style.filter = 'brightness(0) invert(1)';
+        }}
+        onMouseLeave={(e) => {
+          const img = e.currentTarget.querySelector('img');
+          if (img) img.style.filter = 'none';
+        }}
+      >
+        <Image 
+          src="/images/whatsapp.svg" 
+          alt="WhatsApp" 
+          width={20} 
+          height={20} 
+          className="transition-all duration-300 group-hover:scale-110" 
+          style={{ filter: 'none' }}
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+        {/* Ubicación */}
+        <div className="flex items-start gap-4 pt-2">
+          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+            <MapPin className="w-6 h-6 text-primary" />
+          </div>
+          <div className="space-y-1">
+            <p className="font-bold text-card-foreground" style={{ fontFamily: dmSans }}>Ubicación</p>
+            <p className="text-muted-foreground" style={{ fontFamily: dmSans }}>Buenos Aires, Argentina</p>
+          </div>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+</div>
         </div>
       </div>
     </section>
