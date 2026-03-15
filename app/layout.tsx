@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     url: "https://www.forestagro.com.ar",
     siteName: "Forestagro",
     images: [
-      {
-        url: "/images/og-image.png", 
-        width: 1200,
-        height: 630,
-        alt: "Logo Forestagro",
-      },
-    ],
+  {
+    url: "https://forestagro.com.ar/images/og-image.png", // Usá el link real
+    width: 1200,
+    height: 630,
+    alt: "Logo Forestagro",
+  },
+],
     locale: "es_AR",
     type: "website",
   },
