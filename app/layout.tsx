@@ -14,8 +14,13 @@ export const metadata: Metadata = {
   keywords: ["Ingeniería Forestal", "Agronomía", "General Belgrano", "Mariano Clausi", "Sabrina Alcat", "Forestagro"],
   authors: [{ name: "Mariano H. Clausi" }, { name: "Sabrina Alcat" }],
   icons: {
-    icon: "/images/favicon.png",
-    apple: "/images/favicon.png", // Esto es para que el acceso directo en iPhone tenga el logo
+    icon: [
+      { url: "/images/favicon.png" },
+      { url: "/images/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/images/favicon.png", sizes: "180x180", type: "image/png" }, // Forzamos tamaño para iOS
+    ],
   },
   openGraph: {
     title: "Forestagro | Ingeniería Forestal y Agronómica",
@@ -39,6 +44,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        {/* Esto ayuda a que el iPhone no haga zoom automático en los inputs */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <style>{`
           * {
             transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, border-color 0.25s ease-in-out !important;
@@ -48,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${dmSans.variable} ${poppins.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system" // Ahora sí va a respetar el modo de tu PC
+          defaultTheme="system"
           enableSystem={true}
         >
           {children}
