@@ -45,44 +45,39 @@ export function About() {
 
   useEffect(() => {
     if (progress >= 100) {
-      // 1. Empezamos el desvanecimiento (Fade Out)
       setIsTransitioning(true)
-      
       const timeout = setTimeout(() => {
-        // 2. Cambiamos el contenido mientras el texto es invisible
         setActiveCard((prev) => (prev === team.length - 1 ? 0 : prev + 1))
         setProgress(0)
-        
-        // 3. Volvemos a mostrar (Fade In) después de un breve delay
         setTimeout(() => {
           setIsTransitioning(false)
         }, 50) 
-      }, 800) // Duración de la salida
-      
+      }, 800)
       return () => clearTimeout(timeout)
     }
   }, [progress])
 
   return (
-    <section id="nosotros" className="py-8 lg:py-16 bg-background overflow-hidden">
+    <section id="nosotros" className="py-12 lg:py-20 bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-6 lg:mb-10">
+        <div className="text-center mb-8 lg:mb-12">
           <span className="text-xs font-medium text-primary uppercase tracking-wider" style={{ fontFamily: dmSans }}>
             Sobre Nosotros
           </span>
-          <h2 className="mt-1 text-2xl lg:text-4xl font-bold text-foreground" style={{ fontFamily: poppins }}>
+          <h2 className="mt-2 text-3xl lg:text-5xl font-bold text-foreground" style={{ fontFamily: poppins }}>
             Quiénes Somos
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           
-          <div className="relative h-64 sm:h-80 lg:h-[500px] w-full max-w-[500px] mx-auto rounded-2xl overflow-hidden shadow-xl bg-muted">
+          {/* AJUSTE CLAVE: Contenedor con aspect-ratio vertical para evitar cortes */}
+          <div className="relative w-full max-w-[450px] mx-auto aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-muted">
             {team.map((member, index) => (
               <div 
                 key={index} 
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
                   index === activeCard ? "opacity-100 scale-100" : "opacity-0 scale-105"
                 }`}
               >
@@ -90,32 +85,33 @@ export function About() {
                   src={member.image}
                   alt={member.role}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-top sm:object-center" // 'object-top' en celu ayuda a que no se corte el sombrero
                   priority
                 />
+                {/* Overlay suave para que el texto resalte si fuera necesario */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
               </div>
             ))}
           </div>
 
-          <div className="flex flex-col justify-center">
-            {/* EFECTO FADE IN / OUT: Suave y con ligero movimiento vertical */}
+          <div className="flex flex-col justify-center text-center lg:text-left">
             <div className={`transition-all duration-1000 ease-in-out ${
               isTransitioning 
-                ? "opacity-0 translate-y-2 blur-sm" 
+                ? "opacity-0 translate-y-4 blur-sm" 
                 : "opacity-100 translate-y-0 blur-0"
             }`}>
-              <h3 className="text-xl lg:text-3xl font-bold text-primary mb-2 lg:mb-4" style={{ fontFamily: poppins }}>
+              <h3 className="text-2xl lg:text-4xl font-bold text-primary mb-4" style={{ fontFamily: poppins }}>
                 {team[activeCard].role}
               </h3>
               
-              <p className="text-base lg:text-lg leading-relaxed text-foreground/80" style={{ fontFamily: dmSans }}>
+              <p className="text-base lg:text-xl leading-relaxed text-muted-foreground" style={{ fontFamily: dmSans }}>
                 {team[activeCard].description}
               </p>
             </div>
 
-            <div className="flex gap-2 mt-6">
+            <div className="flex justify-center lg:justify-start gap-3 mt-10">
               {team.map((_, i) => (
-                <div key={i} className={`h-1 rounded-full transition-all duration-500 ${i === activeCard ? "w-10 bg-primary/20" : "w-4 bg-muted/30"}`}>
+                <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === activeCard ? "w-12 bg-primary/20" : "w-6 bg-muted"}`}>
                   {i === activeCard && (
                     <div className="h-full bg-primary rounded-full" style={{ width: `${progress}%` }} />
                   )}

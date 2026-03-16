@@ -9,8 +9,8 @@ export async function POST(req: Request) {
     const { nombre, email, asunto, mensaje } = body;
 
     const { data, error } = await resend.emails.send({
-      from: 'Forestagro Web <onboarding@resend.dev>',
-      // Cambiamos a la casilla de Mariano únicamente
+      // CAMBIO CLAVE: Usamos el dominio verificado
+      from: 'Forestagro Web <contacto@forestagro.com.ar>', 
       to: ['forestagro.contacto@gmail.com'], 
       subject: `🌳 Nueva Consulta: ${asunto || "General"}`,
       replyTo: email,
@@ -20,8 +20,9 @@ export async function POST(req: Request) {
             <h1 style="color: white; margin: 0; font-size: 24px;">Nueva Consulta Web</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
-            <p style="font-size: 16px; color: #475569;">Has recibido un nuevo mensaje desde el formulario de contacto:</p>
+            <p style="font-size: 16px; color: #475569;">Hola Mariano, has recibido un nuevo mensaje:</p>
             <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #166534;">
+              <p style="margin: 0 0 10px 0; color: #64748b; font-size: 14px;">DETALLES DEL CONTACTO</p>
               <p style="margin: 0 0 10px 0;"><strong>Nombre:</strong> ${nombre}</p>
               <p style="margin: 0 0 10px 0;"><strong>Email:</strong> ${email}</p>
               <p style="margin: 0 0 10px 0;"><strong>Asunto:</strong> ${asunto}</p>
@@ -29,12 +30,14 @@ export async function POST(req: Request) {
               <p style="margin: 0 0 10px 0;"><strong>Mensaje:</strong></p>
               <p style="color: #1e293b; line-height: 1.6; white-space: pre-wrap; margin: 0;">${mensaje}</p>
             </div>
-            <a href="mailto:${email}" style="display: inline-block; background-color: #166534; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 10px;">
-              Responder al cliente
-            </a>
+            <div style="text-align: center;">
+              <a href="mailto:${email}" style="display: inline-block; background-color: #166534; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 10px;">
+                Responder al cliente
+              </a>
+            </div>
           </div>
           <div style="background-color: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
-            Este es un mensaje automático enviado desde forestagro.com.ar
+            Este es un mensaje automático enviado desde <strong>forestagro.com.ar</strong>
           </div>
         </div>
       `,
