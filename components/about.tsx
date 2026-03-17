@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const team = [
   {
@@ -29,6 +30,26 @@ export function About() {
   const poppins = "var(--font-poppins), sans-serif"
   const dmSans = "var(--font-dm-sans), sans-serif"
 
+  const handleNext = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setActiveCard((prev) => (prev === team.length - 1 ? 0 : prev + 1))
+      setProgress(0)
+      setTimeout(() => setIsTransitioning(false), 50)
+    }, 400)
+  }
+
+  const handlePrev = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setActiveCard((prev) => (prev === 0 ? team.length - 1 : prev - 1))
+      setProgress(0)
+      setTimeout(() => setIsTransitioning(false), 50)
+    }, 400)
+  }
+
   useEffect(() => {
     if (isTransitioning) return;
     const timer = setInterval(() => {
@@ -45,17 +66,11 @@ export function About() {
 
   useEffect(() => {
     if (progress >= 100) {
-      setIsTransitioning(true)
-      const timeout = setTimeout(() => {
-        setActiveCard((prev) => (prev === team.length - 1 ? 0 : prev + 1))
-        setProgress(0)
-        setTimeout(() => {
-          setIsTransitioning(false)
-        }, 50) 
-      }, 800)
-      return () => clearTimeout(timeout)
+      handleNext()
     }
   }, [progress])
+
+  if (!team[activeCard]) return null;
 
   return (
     <section id="nosotros" className="py-12 lg:py-20 bg-background overflow-hidden">
@@ -72,8 +87,7 @@ export function About() {
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           
-          {/* AJUSTE CLAVE: Contenedor con aspect-ratio vertical para evitar cortes */}
-          <div className="relative w-full max-w-[450px] mx-auto aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-muted">
+          <div className="relative w-full max-w-[450px] mx-auto aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-muted group">
             {team.map((member, index) => (
               <div 
                 key={index} 
@@ -85,13 +99,28 @@ export function About() {
                   src={member.image}
                   alt={member.role}
                   fill
-                  className="object-cover object-top sm:object-center" // 'object-top' en celu ayuda a que no se corte el sombrero
+                  className="object-cover object-top sm:object-center"
                   priority
                 />
-                {/* Overlay suave para que el texto resalte si fuera necesario */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-60" />
               </div>
             ))}
+
+            {/* BOTONES SIEMPRE VISIBLES EN CELU - HOVER EN PC */}
+            <button 
+              onClick={handlePrev}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center text-white lg:opacity-0 lg:group-hover:opacity-100 opacity-100 transition-all hover:bg-black/40 z-20 shadow-lg"
+              aria-label="Anterior"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={handleNext}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center text-white lg:opacity-0 lg:group-hover:opacity-100 opacity-100 transition-all hover:bg-black/40 z-20 shadow-lg"
+              aria-label="Siguiente"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
 
           <div className="flex flex-col justify-center text-center lg:text-left">
@@ -101,11 +130,11 @@ export function About() {
                 : "opacity-100 translate-y-0 blur-0"
             }`}>
               <h3 className="text-2xl lg:text-4xl font-bold text-primary mb-4" style={{ fontFamily: poppins }}>
-                {team[activeCard].role}
+                {team[activeCard]?.role}
               </h3>
               
               <p className="text-base lg:text-xl leading-relaxed text-muted-foreground" style={{ fontFamily: dmSans }}>
-                {team[activeCard].description}
+                {team[activeCard]?.description}
               </p>
             </div>
 
@@ -119,7 +148,6 @@ export function About() {
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </section>
